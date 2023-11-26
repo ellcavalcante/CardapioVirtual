@@ -1,0 +1,204 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "title": "Salada Caprese",
+      "description": "Tomate, muçarela de búfala, manjericão e azeite de oliva.",
+      "price": 25.9,
+      "category": {
+        "id": 1,
+        "title": "Entrada"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Bruschetta",
+      "description": "Pão italiano com tomate, manjericão e azeite de oliva.",
+      "price": 19.9,
+      "category": {
+        "id": 1,
+        "title": "Entrada"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Carpaccio",
+      "description": "Carne crua fatiada, regada com molho de mostarda e alcaparras.",
+      "price": 29.9,
+      "category": {
+        "id": 1,
+        "title": "Entrada"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Bife à Parmegiana",
+      "description": "Bife empanado coberto com molho de tomate e queijo derretido, acompanhado de arroz e batata frita.",
+      "price": 45.9,
+      "category": {
+        "id": 2,
+        "title": "Carnes"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Filé Mignon",
+      "description": "Filé mignon grelhado com molho de cogumelos, acompanhado de purê de batatas.",
+      "price": 55.9,
+      "category": {
+        "id": 2,
+        "title": "Carnes"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Costela BBQ",
+      "description": "Costela suína assada com molho barbecue, acompanhada de batatas rústicas.",
+      "price": 39.9,
+      "category": {
+        "id": 2,
+        "title": "Carnes"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Strogonoff",
+      "description": "Cubos de carne macia, creme de leite, champignons e temperos especiais.",
+      "price": 35.9,
+      "category": {
+        "id": 2,
+        "title": "Carnes"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Bife a Cavalo",
+      "description": "Bife grelhado e ovo estrelado.",
+      "price": 29.9,
+      "category": {
+        "id": 2,
+        "title": "Carnes"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Salmão Grelhado",
+      "description": "Salmão grelhado com legumes ao vapor.",
+      "price": 38.5,
+      "category": {
+        "id": 3,
+        "title": "Peixe"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Moqueca de Peixe",
+      "description": "Peixe cozido em leite de coco, dendê, pimentões e coentro, acompanhado de arroz e pirão.",
+      "price": 42.9,
+      "category": {
+        "id": 3,
+        "title": "Peixe"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Nhoque ao Molho Pesto",
+      "description": "Nhoque de batata com molho pesto de manjericão.",
+      "price": 29.9,
+      "category": {
+        "id": 4,
+        "title": "Massas"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Lasanha à Bolonhesa",
+      "description": "Lasanha com camadas de massa intercaladas com molho bolonhesa, molho branco e queijo.",
+      "price": 35.9,
+      "category": {
+        "id": 4,
+        "title": "Massas"
+      }
+    },
+    {
+      "id": 13,
+      "title": "Tiramisu",
+      "description": "Sobremesa clássica italiana à base de café, creme de queijo mascarpone e cacau em pó.",
+      "price": 15.0,
+      "category": {
+        "id": 5,
+        "title": "Sobremesas"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Pudim de Leite",
+      "description": "Pudim de leite condensado com calda de caramelo.",
+      "price": 11.0,
+      "category": {
+        "id": 5,
+        "title": "Sobremesas"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Mousse de Chocolate",
+      "description": "Mousse de chocolate com chantilly.",
+      "price": 14.5,
+      "category": {
+        "id": 5,
+        "title": "Sobremesas"
+      }
+    },
+    {
+      "id": 16,
+      "title": "Caipirinha",
+      "description": "Bebida refrescante feita com cachaça, limão, açúcar e gelo.",
+      "price": 12.5,
+      "category": {
+        "id": 6,
+        "title": "Bebidas"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Mojito",
+      "description": "Bebida refrescante feita com rum, hortelã, limão, açúcar e água com gás.",
+      "price": 14.9,
+      "category": {
+        "id": 6,
+        "title": "Bebidas"
+      }
+    },
+    {
+      "id": 18,
+      "title": "Água Mineral",
+      "description": "Água mineral com ou sem gás.",
+      "price": 5.0,
+      "category": {
+        "id": 6,
+        "title": "Bebidas"
+      }
+    },
+    {
+      "id": 19,
+      "title": "Refrigerante",
+      "description": "Refrigerante de cola ou guaraná.",
+      "price": 6.0,
+      "category": {
+        "id": 6,
+        "title": "Bebidas"
+      }
+    },
+    {
+      "id": 20,
+      "title": "Cerveja",
+      "description": "Cervejas diversas, como pilsen, lager e IPA.",
+      "price": 8.5,
+      "category": {
+        "id": 6,
+        "title": "Bebidas"
+      }
+    }
+  ]
+}

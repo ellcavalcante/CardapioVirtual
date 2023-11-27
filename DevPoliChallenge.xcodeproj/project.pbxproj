@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B75BBB52B13929A002FAFC2 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBB42B13929A002FAFC2 /* DetailsScreen.swift */; };
+		0B75BBB72B1392B0002FAFC2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBB62B1392B0002FAFC2 /* DetailsViewController.swift */; };
+		0B75BBBC2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBBB2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift */; };
+		0B75BBBE2B13D674002FAFC2 /* DetailsCollectionViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBBD2B13D674002FAFC2 /* DetailsCollectionViewScreen.swift */; };
+		0B75BBC12B1403A7002FAFC2 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBC02B1403A7002FAFC2 /* CollectionModel.swift */; };
+		0B75BBC42B140DA8002FAFC2 /* HomeTableViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBC32B140DA8002FAFC2 /* HomeTableViewScreen.swift */; };
+		0B75BBC62B140DC0002FAFC2 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBC52B140DC0002FAFC2 /* HomeTableViewCell.swift */; };
 		0B9848542B12B52E004DBE16 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9848532B12B52E004DBE16 /* HomeScreen.swift */; };
 		4C33FF2E2A75A2640002E765 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C33FF2D2A75A2640002E765 /* UIColor+ext.swift */; };
 		4C33FF332A75A3F40002E765 /* DS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C33FF322A75A3F40002E765 /* DS.swift */; };
@@ -19,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B75BBB42B13929A002FAFC2 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
+		0B75BBB62B1392B0002FAFC2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		0B75BBBB2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B75BBBD2B13D674002FAFC2 /* DetailsCollectionViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewScreen.swift; sourceTree = "<group>"; };
+		0B75BBC02B1403A7002FAFC2 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
+		0B75BBC32B140DA8002FAFC2 /* HomeTableViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewScreen.swift; sourceTree = "<group>"; };
+		0B75BBC52B140DC0002FAFC2 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		0B9848532B12B52E004DBE16 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		4C33FF2D2A75A2640002E765 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
 		4C33FF322A75A3F40002E765 /* DS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DS.swift; sourceTree = "<group>"; };
@@ -44,6 +58,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B75BBB32B139268002FAFC2 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				0B75BBB42B13929A002FAFC2 /* DetailsScreen.swift */,
+				0B75BBB62B1392B0002FAFC2 /* DetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		0B75BBBA2B13CD66002FAFC2 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B75BBBB2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift */,
+				0B75BBBD2B13D674002FAFC2 /* DetailsCollectionViewScreen.swift */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		0B75BBBF2B140394002FAFC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B75BBC02B1403A7002FAFC2 /* CollectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B75BBC22B140D76002FAFC2 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0B75BBC32B140DA8002FAFC2 /* HomeTableViewScreen.swift */,
+				0B75BBC52B140DC0002FAFC2 /* HomeTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		4C33FF2C2A75A2560002E765 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +130,10 @@
 		4C3862A22A758819005C9C3B /* DevPoliChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				0B75BBC22B140D76002FAFC2 /* TableViewCell */,
+				0B75BBBF2B140394002FAFC2 /* Model */,
+				0B75BBBA2B13CD66002FAFC2 /* CollectionCell */,
+				0B75BBB32B139268002FAFC2 /* Details */,
 				4C33FF2F2A75A3810002E765 /* DesignSystem */,
 				4C33FF2C2A75A2560002E765 /* Utils */,
 				4C3862B92A758A98005C9C3B /* Home */,
@@ -191,9 +244,16 @@
 			files = (
 				4C3862A82A758819005C9C3B /* HomeViewController.swift in Sources */,
 				4C33FF352A75A4550002E765 /* DS+Colors.swift in Sources */,
+				0B75BBC62B140DC0002FAFC2 /* HomeTableViewCell.swift in Sources */,
+				0B75BBBE2B13D674002FAFC2 /* DetailsCollectionViewScreen.swift in Sources */,
+				0B75BBB72B1392B0002FAFC2 /* DetailsViewController.swift in Sources */,
 				0B9848542B12B52E004DBE16 /* HomeScreen.swift in Sources */,
+				0B75BBC42B140DA8002FAFC2 /* HomeTableViewScreen.swift in Sources */,
+				0B75BBC12B1403A7002FAFC2 /* CollectionModel.swift in Sources */,
 				4C33FF332A75A3F40002E765 /* DS.swift in Sources */,
+				0B75BBB52B13929A002FAFC2 /* DetailsScreen.swift in Sources */,
 				4C33FF2E2A75A2640002E765 /* UIColor+ext.swift in Sources */,
+				0B75BBBC2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift in Sources */,
 				4C3862A42A758819005C9C3B /* AppDelegate.swift in Sources */,
 				4C3862A62A758819005C9C3B /* SceneDelegate.swift in Sources */,
 			);

@@ -142,11 +142,26 @@ class HomeScreen: UIView {
         delegate?.actionPastaButton()
     }
     
+    lazy var homeTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 243/255, alpha: 1.0)
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        return tableView
+        
+    }()
+    
     private func configureStackView() {
         stackViewButtons.addArrangedSubview(entryButton)
         stackViewButtons.addArrangedSubview(meatButton)
         stackViewButtons.addArrangedSubview(fishButton)
         stackViewButtons.addArrangedSubview(pastaButton)
+    }
+    
+    func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+        homeTableView.delegate = delegate
+        homeTableView.dataSource = dataSource
     }
     
     override init(frame: CGRect) {
@@ -162,6 +177,7 @@ class HomeScreen: UIView {
         addSubview(whatsGoingToBeToday)
         whatsGoingToBeToday.addSubview(imageV)
         addSubview(stackViewButtons)
+        addSubview(homeTableView)
         configureStackView()
         backgroungColor()
         setUpConstraints()
@@ -188,6 +204,11 @@ class HomeScreen: UIView {
             stackViewButtons.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stackViewButtons.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackViewButtons.heightAnchor.constraint(equalToConstant: 35),
+            
+            homeTableView.topAnchor.constraint(equalTo: stackViewButtons.bottomAnchor, constant: 7),
+            homeTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            homeTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            homeTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
 
         ])

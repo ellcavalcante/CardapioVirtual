@@ -13,6 +13,8 @@ protocol HomeScreenProtocol {
     func actionMeatButton()
     func actionFishButton()
     func actionPastaButton()
+    func actionDessertButton()
+    func actionDrinksButton()
 }
 
 class HomeScreen: UIView {
@@ -55,6 +57,13 @@ class HomeScreen: UIView {
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
         whatsGoingToBeToday.delegate = delegate
     }
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
     
     private let stackViewButtons: UIStackView = {
         let view = UIStackView()
@@ -142,10 +151,49 @@ class HomeScreen: UIView {
         delegate?.actionPastaButton()
     }
     
+    public lazy var dessertButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Sobremesas", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(UIColor(red: 96/255, green: 108/255, blue: 136/255, alpha: 1.0), for: .normal)
+        button.clipsToBounds = true
+        button.layer.borderColor = UIColor(red: 96/255, green: 108/255, blue: 136/255, alpha: 1.0).cgColor
+        button.layer.borderWidth = 1.5
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        button.addTarget(self, action: #selector(tappedDessertButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func tappedDessertButton(){
+        delegate?.actionDessertButton()
+    }
+    
+    public lazy var drinksButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Bebidas", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(UIColor(red: 96/255, green: 108/255, blue: 136/255, alpha: 1.0), for: .normal)
+        button.clipsToBounds = true
+        button.layer.borderColor = UIColor(red: 96/255, green: 108/255, blue: 136/255, alpha: 1.0).cgColor
+        button.layer.borderWidth = 1.5
+        button.layer.cornerRadius = 10.0
+        button.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        button.addTarget(self, action: #selector(tappedDrinksButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func tappedDrinksButton(){
+        delegate?.actionDrinksButton()
+    }
+    
     lazy var homeTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 243/255, alpha: 1.0)
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
         return tableView
@@ -157,6 +205,8 @@ class HomeScreen: UIView {
         stackViewButtons.addArrangedSubview(meatButton)
         stackViewButtons.addArrangedSubview(fishButton)
         stackViewButtons.addArrangedSubview(pastaButton)
+        stackViewButtons.addArrangedSubview(dessertButton)
+        stackViewButtons.addArrangedSubview(drinksButton)
     }
     
     func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
@@ -176,7 +226,8 @@ class HomeScreen: UIView {
     private func addSubview() {
         addSubview(whatsGoingToBeToday)
         whatsGoingToBeToday.addSubview(imageV)
-        addSubview(stackViewButtons)
+        addSubview(scrollView)
+        scrollView.addSubview(stackViewButtons)
         addSubview(homeTableView)
         configureStackView()
         backgroungColor()
@@ -200,12 +251,19 @@ class HomeScreen: UIView {
             imageV.heightAnchor.constraint(equalToConstant: 24),
             imageV.widthAnchor.constraint(equalToConstant: 24),
             
-            stackViewButtons.topAnchor.constraint(equalTo: whatsGoingToBeToday.bottomAnchor, constant: 13),
-            stackViewButtons.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            stackViewButtons.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            stackViewButtons.heightAnchor.constraint(equalToConstant: 35),
+            scrollView.topAnchor.constraint(equalTo: whatsGoingToBeToday.bottomAnchor, constant: 13),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            scrollView.heightAnchor.constraint(equalToConstant: 35),
             
-            homeTableView.topAnchor.constraint(equalTo: stackViewButtons.bottomAnchor, constant: 7),
+            stackViewButtons.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackViewButtons.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackViewButtons.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackViewButtons.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            dessertButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            homeTableView.topAnchor.constraint(equalTo: stackViewButtons.bottomAnchor, constant: 10),
             homeTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             homeTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             homeTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),

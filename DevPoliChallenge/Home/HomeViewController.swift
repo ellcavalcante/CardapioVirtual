@@ -15,8 +15,8 @@ class HomeViewController: UIViewController {
     let sectionTitles = ["Entrada", "Carnes", "Peixe", "Massas", "Sobremesas", "Bebidas"]
     
     let menuDataEntradas = [CollectionModel(titleLabel: "Salada Caprese", subTitleLabel: "Tomate, muçarela de búfala, manjericão e azeite de oliva.", priceLabel: "25,90"),
-                    CollectionModel(titleLabel: "Bruschetta", subTitleLabel: "Pão italiano com tomate, manjericão e azeite de oliva.", priceLabel: "19,90"),
-                    CollectionModel(titleLabel: "Carpaccio", subTitleLabel: "Carne crua fatiada, regada com molho de mostarda e alcaparras.", priceLabel: "29,90")]
+                            CollectionModel(titleLabel: "Bruschetta", subTitleLabel: "Pão italiano com tomate, manjericão e azeite de oliva.", priceLabel: "19,90"),
+                            CollectionModel(titleLabel: "Carpaccio", subTitleLabel: "Carne crua fatiada, regada com molho de mostarda e alcaparras.", priceLabel: "29,90")]
     
     let menuDataCarnes = [CollectionModel(titleLabel: "Bife à Parmegiana", subTitleLabel: "Bife empanado coberto com molho de tomate e queijo derretido, acompanhado de arroz e batata frita.", priceLabel: "45,90"),
                           CollectionModel(titleLabel: "Filé Mignon", subTitleLabel: "Filé mignon grelhado com molho de cogumelos, acompanhado de purê de batatas.", priceLabel: "55,90"),
@@ -35,24 +35,24 @@ class HomeViewController: UIViewController {
                               CollectionModel(titleLabel: "Mousse de Chocolate", subTitleLabel: "Mousse de chocolate com chantilly.", priceLabel: "14,50")]
     
     let menuDataBebidas = [CollectionModel(titleLabel: "Água Mineral", subTitleLabel: "Água mineral com ou sem gás.", priceLabel: "5"),
-                          CollectionModel(titleLabel: "Caipirinha", subTitleLabel: "Bebida refrescante feita com cachaça, limão, açúcar e gelo.", priceLabel: "12,50"),
-                          CollectionModel(titleLabel: "Cerveja", subTitleLabel: "Cervejas diversas, como pilsen, lager e IPA.", priceLabel: "8,50"),
-                          CollectionModel(titleLabel: "Mojito", subTitleLabel: "Bebida refrescante feita com rum, hortelã, limão, açúcar e água com gás.", priceLabel: "14,90"),
-                          CollectionModel(titleLabel: "Refrigerante", subTitleLabel: "Refrigerante de cola ou guaraná.", priceLabel: "6")]
+                           CollectionModel(titleLabel: "Caipirinha", subTitleLabel: "Bebida refrescante feita com cachaça, limão, açúcar e gelo.", priceLabel: "12,50"),
+                           CollectionModel(titleLabel: "Cerveja", subTitleLabel: "Cervejas diversas, como pilsen, lager e IPA.", priceLabel: "8,50"),
+                           CollectionModel(titleLabel: "Mojito", subTitleLabel: "Bebida refrescante feita com rum, hortelã, limão, açúcar e água com gás.", priceLabel: "14,90"),
+                           CollectionModel(titleLabel: "Refrigerante", subTitleLabel: "Refrigerante de cola ou guaraná.", priceLabel: "6")]
     
     override func loadView() {
         screen = HomeScreen()
         view = screen
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         screen?.delegate = self
         screen?.configTextFieldDelegate(delegate: self)
         screen?.configTableViewProtocols(delegate: self, dataSource: self)
     }
-
-
+    
+    
 }
 
 extension HomeViewController: UITextFieldDelegate {
@@ -60,20 +60,35 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: HomeScreenProtocol {
+    
+    func actionEntryButton() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
     func actionMeatButton() {
-        print(#function)
+        let indexPath = IndexPath(row: 0, section: 1)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func actionFishButton() {
-        print(#function)
+        let indexPath = IndexPath(row: 0, section: 2)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func actionPastaButton() {
-        print(#function)
+        let indexPath = IndexPath(row: 0, section: 3)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
-    func actionEntryButton() {
-        print(#function)
+    func actionDessertButton() {
+        let indexPath = IndexPath(row: 0, section: 4)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
+    func actionDrinksButton() {
+        let indexPath = IndexPath(row: 0, section: 5)
+        screen?.homeTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
 

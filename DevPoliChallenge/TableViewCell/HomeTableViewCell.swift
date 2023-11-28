@@ -50,5 +50,4 @@ class HomeTableViewCell: UITableViewCell {
             homeTableViewScreen.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-
 }

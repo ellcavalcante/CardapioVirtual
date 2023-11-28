@@ -72,5 +72,4 @@ class DetailsCollectionViewScreen: UIView {
             priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
         ])
     }
-    
 }

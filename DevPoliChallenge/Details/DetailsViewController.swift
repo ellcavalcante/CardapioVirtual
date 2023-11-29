@@ -14,6 +14,23 @@ class DetailsViewController: UIViewController {
     
     var data: [CollectionModel] = [CollectionModel(titleLabel: "Filé Mignon", subTitleLabel: "Filé mignon grelhado com molho de cogumelos, acompanhado de purê de batatas.", priceLabel: "55,90"),
                                    CollectionModel(titleLabel: "Costela BBQ", subTitleLabel: "Costela suína assada com molho barbecue, acompanhada de batatas rústicas.", priceLabel: "39,90")]
+    var categoryLabel: String
+    var titleLabel: String
+    var descriptionLabel: String
+    var priceLabel: String
+    
+    init(category: String, title: String, description: String, price: String) {
+        
+        self.categoryLabel = category
+        self.titleLabel = title
+        self.descriptionLabel = description
+        self.priceLabel = price
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         screen = DetailsScreen()
@@ -24,6 +41,15 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         screen?.delegate = self
         screen?.configProtocolsDestaquesCollection(delegate: self, dataSource: self)
+        screen?.titleLabel.text = titleLabel
+        screen?.descriptionTextLabel.text = descriptionLabel
+        screen?.backgroundTitleLabel.text = categoryLabel
+        screen?.priceLabel.text = "R$ \(priceLabel)"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
 }

@@ -21,42 +21,34 @@ class HomeScreen: UIView {
     
     var delegate: HomeScreenProtocol?
     
+    
+    
     private lazy var imageV: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "magnifyingglass")
+        imageView.image = UIImage(named: "icon_search")
         imageView.tintColor = UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
         return imageView
     }()
     
-    public lazy var whatsGoingToBeToday: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocorrectionType = .no
-        textField.backgroundColor = .white
-        textField.borderStyle = .roundedRect
-        textField.clipsToBounds = true
-        textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 7.5
-        textField.layer.borderColor = UIColor(displayP3Red: 233/255, green: 241/255, blue: 247/255, alpha: 1.0).cgColor
-        textField.autocapitalizationType = .none
-        textField.keyboardType = .default
-        let placeholderText = "O que vai ser hoje?"
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16.0),
-            .foregroundColor: UIColor.systemGray
-        ]
-        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
-        textField.attributedPlaceholder = attributedPlaceholder
-        textField.textColor = UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
-        textField.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        return textField
+    public lazy var titleTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "O que vai ser hoje?"
+        label.textColor = UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
     }()
     
-    public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
-        whatsGoingToBeToday.delegate = delegate
-    }
+    public lazy var whatsGoingToBeTodayView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 7.5
+        view.clipsToBounds = true
+        return view
+    }()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -224,8 +216,9 @@ class HomeScreen: UIView {
     }
     
     private func addSubview() {
-        addSubview(whatsGoingToBeToday)
-        whatsGoingToBeToday.addSubview(imageV)
+        addSubview(whatsGoingToBeTodayView)
+        whatsGoingToBeTodayView.addSubview(titleTextLabel)
+        whatsGoingToBeTodayView.addSubview(imageV)
         addSubview(scrollView)
         scrollView.addSubview(stackViewButtons)
         addSubview(homeTableView)
@@ -241,17 +234,20 @@ class HomeScreen: UIView {
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             
-            whatsGoingToBeToday.topAnchor.constraint(equalTo: topAnchor, constant: 55),
-            whatsGoingToBeToday.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            whatsGoingToBeToday.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            whatsGoingToBeToday.heightAnchor.constraint(equalToConstant: 46),
+            whatsGoingToBeTodayView.topAnchor.constraint(equalTo: topAnchor, constant: 55),
+            whatsGoingToBeTodayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            whatsGoingToBeTodayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            whatsGoingToBeTodayView.heightAnchor.constraint(equalToConstant: 46),
+            
+            titleTextLabel.topAnchor.constraint(equalTo: whatsGoingToBeTodayView.topAnchor, constant: 13),
+            titleTextLabel.leadingAnchor.constraint(equalTo: whatsGoingToBeTodayView.leadingAnchor, constant: 12),
         
-            imageV.trailingAnchor.constraint(equalTo: whatsGoingToBeToday.trailingAnchor, constant: -12),
-            imageV.centerYAnchor.constraint(equalTo: whatsGoingToBeToday.centerYAnchor),
+            imageV.trailingAnchor.constraint(equalTo: whatsGoingToBeTodayView.trailingAnchor, constant: -14),
+            imageV.centerYAnchor.constraint(equalTo: whatsGoingToBeTodayView.centerYAnchor),
             imageV.heightAnchor.constraint(equalToConstant: 24),
             imageV.widthAnchor.constraint(equalToConstant: 24),
             
-            scrollView.topAnchor.constraint(equalTo: whatsGoingToBeToday.bottomAnchor, constant: 13),
+            scrollView.topAnchor.constraint(equalTo: whatsGoingToBeTodayView.bottomAnchor, constant: 13),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             scrollView.heightAnchor.constraint(equalToConstant: 35),

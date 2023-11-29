@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2FC2162B16A59F003F8506 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FC2152B16A59F003F8506 /* SearchScreen.swift */; };
+		0B2FC2182B16A5C7003F8506 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2FC2172B16A5C7003F8506 /* SearchViewController.swift */; };
 		0B75BBB52B13929A002FAFC2 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBB42B13929A002FAFC2 /* DetailsScreen.swift */; };
 		0B75BBB72B1392B0002FAFC2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBB62B1392B0002FAFC2 /* DetailsViewController.swift */; };
 		0B75BBBC2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75BBBB2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B2FC2152B16A59F003F8506 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
+		0B2FC2172B16A5C7003F8506 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0B75BBB42B13929A002FAFC2 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
 		0B75BBB62B1392B0002FAFC2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0B75BBBB2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2FC2142B16A57E003F8506 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0B2FC2152B16A59F003F8506 /* SearchScreen.swift */,
+				0B2FC2172B16A5C7003F8506 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		0B75BBB32B139268002FAFC2 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +143,7 @@
 		4C3862A22A758819005C9C3B /* DevPoliChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				0B2FC2142B16A57E003F8506 /* Search */,
 				0B75BBC22B140D76002FAFC2 /* TableViewCell */,
 				0B75BBBF2B140394002FAFC2 /* Model */,
 				0B75BBBA2B13CD66002FAFC2 /* CollectionCell */,
@@ -252,7 +266,9 @@
 				0B75BBC12B1403A7002FAFC2 /* CollectionModel.swift in Sources */,
 				4C33FF332A75A3F40002E765 /* DS.swift in Sources */,
 				0B75BBB52B13929A002FAFC2 /* DetailsScreen.swift in Sources */,
+				0B2FC2182B16A5C7003F8506 /* SearchViewController.swift in Sources */,
 				4C33FF2E2A75A2640002E765 /* UIColor+ext.swift in Sources */,
+				0B2FC2162B16A59F003F8506 /* SearchScreen.swift in Sources */,
 				0B75BBBC2B13CDB2002FAFC2 /* DetailsCollectionViewCell.swift in Sources */,
 				4C3862A42A758819005C9C3B /* AppDelegate.swift in Sources */,
 				4C3862A62A758819005C9C3B /* SceneDelegate.swift in Sources */,

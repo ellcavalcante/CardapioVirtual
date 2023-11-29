@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     var screen: HomeScreen?
     
-    let sectionTitles = ["Entrada", "Carnes", "Peixe", "Massas", "Sobremesas", "Bebidas"]
+    let sectionTitles = ["Entradas", "Carnes", "Peixes", "Massas", "Sobremesas", "Bebidas"]
     
     let menuDataEntradas = [CollectionModel(titleLabel: "Salada Caprese", subTitleLabel: "Tomate, muçarela de búfala, manjericão e azeite de oliva.", priceLabel: "25,90"),
                             CollectionModel(titleLabel: "Bruschetta", subTitleLabel: "Pão italiano com tomate, manjericão e azeite de oliva.", priceLabel: "19,90"),
@@ -48,15 +48,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         screen?.delegate = self
-        screen?.configTextFieldDelegate(delegate: self)
         screen?.configTableViewProtocols(delegate: self, dataSource: self)
+        tap()
     }
     
+    private func tap() {
+        
+        let whatsGTBTView = UITapGestureRecognizer(target: self, action: #selector(whatsViewTapped))
+        screen?.whatsGoingToBeTodayView.addGestureRecognizer(whatsGTBTView)
+    }
     
-}
-
-extension HomeViewController: UITextFieldDelegate {
-    
+    @objc func whatsViewTapped() {
+        let searchScreen: SearchViewController = SearchViewController()
+        self.navigationController?.pushViewController(searchScreen, animated: true)
+    }
 }
 
 extension HomeViewController: HomeScreenProtocol {
@@ -113,6 +118,35 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return menuDataBebidas.count
         }
         return 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? HomeTableViewCell else {
+            return
+        }
+
+        let titleLabelText = cell.homeTableViewScreen.titleLabel.text
+        let subTitleLabelText = cell.homeTableViewScreen.subTitleLabel.text
+        let priceLabelText = cell.homeTableViewScreen.priceLabel.text
+        let sectionInt = indexPath.section
+        var section: String = ""
+        
+        if sectionInt == 0 {
+            section = "Entradas"
+        } else if sectionInt == 1 {
+            section = "Carnes"
+        } else if sectionInt == 2 {
+            section = "Peixes"
+        } else if sectionInt == 3 {
+            section = "Massas"
+        } else if sectionInt == 4 {
+            section = "Sobremesas"
+        } else {
+            section = "Bebidas"
+        }
+        
+        let screen: DetailsViewController = DetailsViewController(category: section, title: titleLabelText ?? "", description: subTitleLabelText ?? "", price: priceLabelText ?? "")
+        navigationController?.pushViewController(screen, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

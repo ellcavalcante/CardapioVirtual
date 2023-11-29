@@ -148,7 +148,7 @@ class DetailsScreen: UIView {
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             
-            backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -20),
+            backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 26),
             
             titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 30),

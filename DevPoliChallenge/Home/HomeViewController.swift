@@ -129,23 +129,37 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let subTitleLabelText = cell.homeTableViewScreen.subTitleLabel.text
         let priceLabelText = cell.homeTableViewScreen.priceLabel.text
         let sectionInt = indexPath.section
+        var rowsInt: Int = 0
         var section: String = ""
+        var restOfData: [CollectionModel] = []
         
         if sectionInt == 0 {
             section = "Entradas"
+            rowsInt = menuDataEntradas.count
+            restOfData = menuDataEntradas
         } else if sectionInt == 1 {
             section = "Carnes"
+            rowsInt = menuDataCarnes.count
+            restOfData = menuDataCarnes
         } else if sectionInt == 2 {
             section = "Peixes"
+            rowsInt = menuDataPeixes.count
+            restOfData = menuDataPeixes
         } else if sectionInt == 3 {
             section = "Massas"
+            rowsInt = menuDataMassas.count
+            restOfData = menuDataMassas
         } else if sectionInt == 4 {
             section = "Sobremesas"
+            rowsInt = menuDataSobremesas.count
+            restOfData = menuDataSobremesas
         } else {
             section = "Bebidas"
+            rowsInt = menuDataBebidas.count
+            restOfData = menuDataBebidas
         }
         
-        let screen: DetailsViewController = DetailsViewController(category: section, title: titleLabelText ?? "", description: subTitleLabelText ?? "", price: priceLabelText ?? "")
+        let screen: DetailsViewController = DetailsViewController(category: section, title: titleLabelText ?? "", description: subTitleLabelText ?? "", price: priceLabelText ?? "", rows: rowsInt, restOfData: restOfData)
         navigationController?.pushViewController(screen, animated: true)
     }
     

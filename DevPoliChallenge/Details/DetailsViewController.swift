@@ -18,13 +18,18 @@ class DetailsViewController: UIViewController {
     var titleLabel: String
     var descriptionLabel: String
     var priceLabel: String
+    var rowsInt: Int
+    var restOfData: [CollectionModel]
+    var filteredRestOfData: [CollectionModel] = []
     
-    init(category: String, title: String, description: String, price: String) {
+    init(category: String, title: String, description: String, price: String, rows: Int, restOfData: [CollectionModel]) {
         
         self.categoryLabel = category
         self.titleLabel = title
         self.descriptionLabel = description
         self.priceLabel = price
+        self.rowsInt = rows
+        self.restOfData = restOfData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,6 +50,13 @@ class DetailsViewController: UIViewController {
         screen?.descriptionTextLabel.text = descriptionLabel
         screen?.backgroundTitleLabel.text = categoryLabel
         screen?.priceLabel.text = "R$ \(priceLabel)"
+        
+        for item in restOfData {
+            if item.titleLabel != titleLabel || item.subTitleLabel != descriptionLabel || item.priceLabel != priceLabel {
+                filteredRestOfData.append(item)
+            }
+        }
+        restOfData = filteredRestOfData
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,12 +74,13 @@ extension DetailsViewController: DetailsScreenProtocol {
 
 extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return rowsInt - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DetailsCollectionViewCell? = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCollectionViewCell.identifier, for: indexPath) as? DetailsCollectionViewCell
-        cell?.setupCell(data: data[indexPath.row])
+        cell?.setupCell(data: restOfData[indexPath.row])
+        
         return cell ?? UICollectionViewCell()
     }
     

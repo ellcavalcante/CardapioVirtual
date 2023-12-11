@@ -10,6 +10,7 @@ import UIKit
 
 protocol SearchScreenProtocol {
     func actionBackButton()
+    func actionWhatsGoingToBeToday(_ text: String)
 }
 
 class SearchScreen: UIView {
@@ -50,8 +51,13 @@ class SearchScreen: UIView {
         textField.attributedPlaceholder = attributedPlaceholder
         textField.textColor = UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
         textField.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        textField.addTarget(self, action: #selector(configTextField), for: .editingChanged)
         return textField
     }()
+    
+    @objc func configTextField() {
+        delegate?.actionWhatsGoingToBeToday(whatsGoingToBeToday.text ?? "")
+    }
     
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
         whatsGoingToBeToday.delegate = delegate
@@ -71,9 +77,76 @@ class SearchScreen: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Resultado da busca"
         label.textColor = UIColor(red: 63/255, green: 76/255, blue: 107/255, alpha: 1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
+    
+    public lazy var noResultsTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Nenhum resultado\n encontrado para "
+        label.textColor = UIColor(red: 63/255, green: 76/255, blue: 107/255, alpha: 1.0)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.isHidden = true
+        return label
+    }()
+    
+    public lazy var typeSomethingTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Digite algo para \nrealizar a pesquisa =)"
+        label.textColor = UIColor(red: 63/255, green: 76/255, blue: 107/255, alpha: 1.0)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    public lazy var sugestionsTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Veja nossa sugestão"
+        label.textColor = UIColor(red: 63/255, green: 76/255, blue: 107/255, alpha: 1.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.isHidden = true
+        return label
+    }()
+    
+    lazy var searchTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 243/255, alpha: 1.0)
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        return tableView
+        
+    }()
+    
+    func configSearchTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+        searchTableView.delegate = delegate
+        searchTableView.dataSource = dataSource
+    }
+    
+    lazy var randomTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.isHidden = true
+        tableView.backgroundColor = .red
+        tableView.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 243/255, alpha: 1.0)
+        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        return tableView
+        
+    }()
+    
+    func configRandomTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+        randomTableView.delegate = delegate
+        randomTableView.dataSource = dataSource
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,6 +162,11 @@ class SearchScreen: UIView {
         addSubview(whatsGoingToBeToday)
         whatsGoingToBeToday.addSubview(imageV)
         addSubview(titleTextLabel)
+        addSubview(searchTableView)
+        addSubview(randomTableView)
+        addSubview(noResultsTextLabel)
+        addSubview(sugestionsTextLabel)
+        addSubview(typeSomethingTextLabel)
         backgroungColor()
         setUpConstraints()
     }
@@ -107,7 +185,7 @@ class SearchScreen: UIView {
             whatsGoingToBeToday.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             whatsGoingToBeToday.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
             whatsGoingToBeToday.heightAnchor.constraint(equalToConstant: 46),
-            
+
             imageV.trailingAnchor.constraint(equalTo: whatsGoingToBeToday.trailingAnchor, constant: -14),
             imageV.centerYAnchor.constraint(equalTo: whatsGoingToBeToday.centerYAnchor),
             imageV.heightAnchor.constraint(equalToConstant: 24),
@@ -115,6 +193,25 @@ class SearchScreen: UIView {
             
             titleTextLabel.topAnchor.constraint(equalTo: whatsGoingToBeToday.bottomAnchor, constant: 20),
             titleTextLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            
+            searchTableView.topAnchor.constraint(equalTo: titleTextLabel.bottomAnchor, constant: 10),
+            searchTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            searchTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            searchTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            noResultsTextLabel.topAnchor.constraint(equalTo: titleTextLabel.bottomAnchor, constant: 50),
+            noResultsTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            sugestionsTextLabel.topAnchor.constraint(equalTo: noResultsTextLabel.bottomAnchor, constant: 50),
+            sugestionsTextLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            
+            randomTableView.topAnchor.constraint(equalTo: sugestionsTextLabel.bottomAnchor, constant: 10),
+            randomTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            randomTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            randomTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            typeSomethingTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            typeSomethingTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
 
         ])
     }

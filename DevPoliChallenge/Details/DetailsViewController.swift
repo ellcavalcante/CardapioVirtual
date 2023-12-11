@@ -19,10 +19,10 @@ class DetailsViewController: UIViewController {
     var descriptionLabel: String
     var priceLabel: String
     var rowsInt: Int
-    var restOfData: [CollectionModel]
-    var filteredRestOfData: [CollectionModel] = []
+    var restOfData: [TableRow]
+    var filteredRestOfData: [TableRow] = []
     
-    init(category: String, title: String, description: String, price: String, rows: Int, restOfData: [CollectionModel]) {
+    init(category: String, title: String, description: String, price: String, rows: Int, restOfData: [TableRow]) {
         
         self.categoryLabel = category
         self.titleLabel = title
@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController {
         screen?.priceLabel.text = "R$ \(priceLabel)"
         
         for item in restOfData {
-            if item.titleLabel != titleLabel || item.subTitleLabel != descriptionLabel || item.priceLabel != priceLabel {
+            if item.title != titleLabel || item.description != descriptionLabel || item.price != priceLabel {
                 filteredRestOfData.append(item)
             }
         }

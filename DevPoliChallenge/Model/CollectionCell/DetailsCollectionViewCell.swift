@@ -14,10 +14,16 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     let customDetailsCollectionScreen: DetailsCollectionViewScreen = DetailsCollectionViewScreen()
     
     
-    func setupCell(data: CollectionModel) {
-        customDetailsCollectionScreen.titleLabel.text = data.titleLabel
-        customDetailsCollectionScreen.subTitleLabel.text = data.subTitleLabel
-        customDetailsCollectionScreen.priceLabel.text = data.priceLabel
+//    func setupCell(data: CollectionModel) {
+//        customDetailsCollectionScreen.titleLabel.text = data.titleLabel
+//        customDetailsCollectionScreen.subTitleLabel.text = data.subTitleLabel
+//        customDetailsCollectionScreen.priceLabel.text = data.priceLabel
+//    }
+    
+    func setupCell(data: TableRow) {
+        customDetailsCollectionScreen.titleLabel.text = data.title
+        customDetailsCollectionScreen.subTitleLabel.text = data.description
+        customDetailsCollectionScreen.priceLabel.text = data.price
     }
     
     override init(frame: CGRect) {

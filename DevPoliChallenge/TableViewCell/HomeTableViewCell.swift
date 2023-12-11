@@ -13,10 +13,10 @@ class HomeTableViewCell: UITableViewCell {
     static let identifier: String = String(describing: HomeTableViewCell.self)
     var homeTableViewScreen: HomeTableViewScreen = HomeTableViewScreen()
     
-    func setupCell(data: CollectionModel) {
-        homeTableViewScreen.titleLabel.text = data.titleLabel
-        homeTableViewScreen.subTitleLabel.text = data.subTitleLabel
-        homeTableViewScreen.priceLabel.text = data.priceLabel
+    func setupCell(data: TableRow) {
+        homeTableViewScreen.titleLabel.text = data.title
+        homeTableViewScreen.subTitleLabel.text = data.description
+        homeTableViewScreen.priceLabel.text = data.price
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

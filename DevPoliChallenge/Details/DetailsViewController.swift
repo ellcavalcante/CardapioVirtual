@@ -15,23 +15,19 @@ class DetailsViewController: UIViewController {
     var data: [CollectionModel] = [CollectionModel(titleLabel: "Filé Mignon", subTitleLabel: "Filé mignon grelhado com molho de cogumelos, acompanhado de purê de batatas.", priceLabel: "55,90"),
                                    CollectionModel(titleLabel: "Costela BBQ", subTitleLabel: "Costela suína assada com molho barbecue, acompanhada de batatas rústicas.", priceLabel: "39,90")]
     var categoryLabel: String
-    var titleLabel: String
-    var descriptionLabel: String
-    var priceLabel: String
-    var rowsInt: Int
+    var dataArray: TableRow
     var restOfData: [TableRow]
     var filteredRestOfData: [TableRow] = []
     
-    init(category: String, title: String, description: String, price: String, rows: Int, restOfData: [TableRow]) {
+    init(category: String, dataArray: TableRow, restOfData: [TableRow]) {
         
         self.categoryLabel = category
-        self.titleLabel = title
-        self.descriptionLabel = description
-        self.priceLabel = price
-        self.rowsInt = rows
+        self.dataArray = dataArray
         self.restOfData = restOfData
         super.init(nibName: nil, bundle: nil)
     }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,21 +37,22 @@ class DetailsViewController: UIViewController {
         screen = DetailsScreen()
         view = screen
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         screen?.delegate = self
         screen?.configProtocolsDestaquesCollection(delegate: self, dataSource: self)
-        screen?.titleLabel.text = titleLabel
-        screen?.descriptionTextLabel.text = descriptionLabel
+        screen?.titleLabel.text = dataArray.title
+        screen?.descriptionTextLabel.text = dataArray.description
         screen?.backgroundTitleLabel.text = categoryLabel
-        screen?.priceLabel.text = "R$ \(priceLabel)"
+        screen?.priceLabel.text = "R$ \(dataArray.price)"
         
-        for item in restOfData {
-            if item.title != titleLabel || item.description != descriptionLabel || item.price != priceLabel {
-                filteredRestOfData.append(item)
+        for row in restOfData {
+            if row.title != screen?.titleLabel.text {
+                filteredRestOfData.append(row)
             }
         }
+        
         restOfData = filteredRestOfData
     }
     
@@ -74,7 +71,7 @@ extension DetailsViewController: DetailsScreenProtocol {
 
 extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rowsInt - 1
+        return restOfData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,5 +83,29 @@ extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 253, height: 85)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedData = restOfData[indexPath.row]
+        
+        guard let selectedCategory = selectedData.category else {
+            return
+        }
+        
+        let passRestOfData = MenuSingleton.shared.sections
+            .flatMap { $0.rows }
+            .filter { row in
+                if let category = row.category {
+                    return category == selectedCategory
+                }
+                return false
+            }
+        
+        let vc: DetailsViewController = DetailsViewController(
+            category: categoryLabel,
+            dataArray: selectedData,
+            restOfData: passRestOfData
+        )
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

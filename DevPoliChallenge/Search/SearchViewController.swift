@@ -12,7 +12,8 @@ class SearchViewController: UIViewController {
     
     var screen: SearchScreen?
     var orderedSections: [TableSection] = []
-    var teste: [TableSection] = []
+    var data: [TableRow] = []
+    var maisUmTeste: [String] = []
     
     
     override func loadView() {
@@ -55,20 +56,17 @@ extension SearchViewController:  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == screen?.searchTableView {
-            if section < teste.count {
-                return teste[section].rows.count
-            }
+            return data.count
         } else if tableView == screen?.randomTableView {
-            return 6
+            return orderedSections.count
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if tableView == screen?.searchTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as? HomeTableViewCell
-            cell?.setupCell(data: teste[indexPath.section].rows[indexPath.row])
+            cell?.setupCell(data: data[indexPath.row])
             cell?.selectionStyle = .none
             return cell ?? UITableViewCell()
         } else if tableView == screen?.randomTableView {
@@ -103,15 +101,17 @@ extension SearchViewController: SearchScreenProtocol {
     
     func actionWhatsGoingToBeToday(_ text: String) {
         if text.isEmpty {
-            teste = []
+            data = []
             screen?.typeSomethingTextLabel.isHidden = false
         } else {
             let lowercasedText = text.lowercased()
             
-            let filteredSingleArray = MenuSingleton.shared.sections.filter { section in
-                let categoryContainsText = section.title?.lowercased().contains(lowercasedText) ?? false
-                
-                return categoryContainsText
+            let filteredSingleArray = MenuSingleton.shared.sections.flatMap { data in
+                return data.rows.filter { row in
+                    let titleContainsText = row.title.lowercased().contains(lowercasedText)
+                    let categoryContainsText = row.category?.first?.category.lowercased().contains(lowercasedText) ?? false
+                    return titleContainsText || categoryContainsText
+                }
             }
             
             if filteredSingleArray.isEmpty {
@@ -134,7 +134,7 @@ extension SearchViewController: SearchScreenProtocol {
                 screen?.randomTableView.isHidden = true
                 screen?.typeSomethingTextLabel.isHidden = true
             }
-            teste = filteredSingleArray
+            data = filteredSingleArray
         }
         screen?.searchTableView.reloadData()
     }

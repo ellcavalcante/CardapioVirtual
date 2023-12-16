@@ -21,7 +21,7 @@ struct TableRow {
     let category: [Category]?
 }
 
-struct Category {
+struct Category: Equatable {
     let id: Int
     let category: String
 }

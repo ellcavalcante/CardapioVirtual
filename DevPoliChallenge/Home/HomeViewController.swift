@@ -11,7 +11,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var screen: HomeScreen?
-
+    var viewModel: HomeViewModel = HomeViewModel()
+    
     override func loadView() {
         screen = HomeScreen()
         view = screen
@@ -73,12 +74,12 @@ extension HomeViewController: UITableViewDataSource {
     
     //Número de seção
     func numberOfSections(in tableView: UITableView) -> Int {
-        MenuSingleton.shared.sections.count
+        viewModel.numberOfSections()
     }
     
     //Número de linhas
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        MenuSingleton.shared.sections[section].rows.count
+        viewModel.numberOfRowsInSection(section: section)
     }
     
     //Construção da cell
@@ -91,7 +92,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        viewModel.heightForRowAt(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -118,17 +119,13 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        MenuSingleton.shared.sections[section].title
+        viewModel.titleForHeaderInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let section = MenuSingleton.shared.sections[indexPath.section]
-        let restOfData = MenuSingleton.shared.sections[indexPath.section].rows
-        let selectedRow = MenuSingleton.shared.sections[indexPath.section].rows[indexPath.row]
-        
-        let vc: DetailsViewController = DetailsViewController(category: section.title ?? "", dataArray: selectedRow, restOfData: restOfData)
-        navigationController?.pushViewController(vc, animated: true)
+        if let detailsViewController = viewModel.didSelectRow(at: indexPath) {
+            navigationController?.pushViewController(detailsViewController, animated: true)
+        }
     }
 }
 

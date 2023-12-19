@@ -10,7 +10,6 @@ import UIKit
 
 protocol DetailsScreenProtocol {
     func actionBackButton()
-
 }
 
 class DetailsScreen: UIView {
@@ -173,7 +172,7 @@ class DetailsScreen: UIView {
             destaquesCollection.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5),
             destaquesCollection.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: -23),
             destaquesCollection.heightAnchor.constraint(equalToConstant: 85),
-
+            
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),

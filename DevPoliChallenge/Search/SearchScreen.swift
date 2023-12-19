@@ -177,7 +177,7 @@ class SearchScreen: UIView {
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-
+            
             backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
             backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 25),
             
@@ -185,7 +185,7 @@ class SearchScreen: UIView {
             whatsGoingToBeToday.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             whatsGoingToBeToday.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
             whatsGoingToBeToday.heightAnchor.constraint(equalToConstant: 46),
-
+            
             imageV.trailingAnchor.constraint(equalTo: whatsGoingToBeToday.trailingAnchor, constant: -14),
             imageV.centerYAnchor.constraint(equalTo: whatsGoingToBeToday.centerYAnchor),
             imageV.heightAnchor.constraint(equalToConstant: 24),
@@ -212,7 +212,6 @@ class SearchScreen: UIView {
             
             typeSomethingTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             typeSomethingTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-
         ])
     }
 }

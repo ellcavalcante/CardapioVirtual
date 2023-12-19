@@ -13,8 +13,6 @@ class SearchViewController: UIViewController {
     var screen: SearchScreen?
     var orderedSections: [TableSection] = []
     var data: [TableRow] = []
-    var maisUmTeste: [String] = []
-    
     
     override func loadView() {
         screen = SearchScreen()
@@ -30,6 +28,7 @@ class SearchViewController: UIViewController {
         
         orderedSections = MenuSingleton.shared.sections.filter { section in
             switch section.title {
+                
             case "Entradas": return true
             case "Carnes": return true
             case "Peixes": return true
@@ -37,6 +36,7 @@ class SearchViewController: UIViewController {
             case "Sobremesas": return true
             case "Bebidas": return true
             default: return false
+                
             }
         }
     }
@@ -44,7 +44,6 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
     }
 }
 
@@ -83,7 +82,7 @@ extension SearchViewController:  UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        80
     }
 }
 
@@ -97,7 +96,6 @@ extension SearchViewController: SearchScreenProtocol {
     func actionBackButton() {
         navigationController?.popViewController(animated: true)
     }
-    
     
     func actionWhatsGoingToBeToday(_ text: String) {
         if text.isEmpty {

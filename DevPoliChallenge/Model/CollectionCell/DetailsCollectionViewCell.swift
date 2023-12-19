@@ -13,13 +13,6 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     static let identifier: String = String(describing: DetailsCollectionViewCell.self)
     let customDetailsCollectionScreen: DetailsCollectionViewScreen = DetailsCollectionViewScreen()
     
-    
-//    func setupCell(data: CollectionModel) {
-//        customDetailsCollectionScreen.titleLabel.text = data.titleLabel
-//        customDetailsCollectionScreen.subTitleLabel.text = data.subTitleLabel
-//        customDetailsCollectionScreen.priceLabel.text = data.priceLabel
-//    }
-    
     func setupCell(data: TableRow) {
         customDetailsCollectionScreen.titleLabel.text = data.title
         customDetailsCollectionScreen.subTitleLabel.text = data.description

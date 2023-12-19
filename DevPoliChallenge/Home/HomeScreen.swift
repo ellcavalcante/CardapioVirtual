@@ -21,8 +21,6 @@ class HomeScreen: UIView {
     
     var delegate: HomeScreenProtocol?
     
-    
-    
     private lazy var imageV: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +102,7 @@ class HomeScreen: UIView {
     @objc func tappedMeatButton(){
         delegate?.actionMeatButton()
     }
-
+    
     public lazy var fishButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -241,7 +239,7 @@ class HomeScreen: UIView {
             
             titleTextLabel.topAnchor.constraint(equalTo: whatsGoingToBeTodayView.topAnchor, constant: 13),
             titleTextLabel.leadingAnchor.constraint(equalTo: whatsGoingToBeTodayView.leadingAnchor, constant: 12),
-        
+            
             imageV.trailingAnchor.constraint(equalTo: whatsGoingToBeTodayView.trailingAnchor, constant: -14),
             imageV.centerYAnchor.constraint(equalTo: whatsGoingToBeTodayView.centerYAnchor),
             imageV.heightAnchor.constraint(equalToConstant: 24),
@@ -264,7 +262,6 @@ class HomeScreen: UIView {
             homeTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             homeTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
-
         ])
     }
 }

@@ -103,7 +103,6 @@
 			children = (
 				0B75BBC02B1403A7002FAFC2 /* CollectionModel.swift */,
 				0BC7D4062B2163C8006BFAAA /* TableSection.swift */,
-				0B75BBBA2B13CD66002FAFC2 /* CollectionCell */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 		4C3862A22A758819005C9C3B /* DevPoliChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				0B75BBBA2B13CD66002FAFC2 /* CollectionCell */,
 				0BC65B802B236A0B00CEF322 /* Singleton */,
 				0B2FC2142B16A57E003F8506 /* Search */,
 				0B75BBC22B140D76002FAFC2 /* TableViewCell */,

@@ -83,8 +83,18 @@ extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let detailsViewController = viewModel.didSelectItemAt(indexPath: indexPath, restOfData: restOfData) {
-            navigationController?.pushViewController(detailsViewController, animated: true)
+        let selectedData = restOfData[indexPath.row]
+        guard let selectedCategory = selectedData.category else {
+            return
         }
+        let passRestOfData = MenuSingleton.shared.sections
+            .flatMap { $0.rows }
+            .filter { row in
+                if let category = row.category {
+                    return category == selectedCategory
+                }
+                return false
+            }
+        navigationController?.pushViewController(DetailsViewController(category: categoryLabel, dataArray: selectedData, restOfData: passRestOfData), animated: true)
     }
 }

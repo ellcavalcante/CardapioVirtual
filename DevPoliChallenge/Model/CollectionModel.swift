@@ -12,4 +12,5 @@ struct CollectionModel {
     var titleLabel: String
     var subTitleLabel: String
     var priceLabel: String
+    var category: String?
 }
